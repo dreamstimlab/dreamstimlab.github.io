@@ -1,10 +1,6 @@
 body {
   margin: 0;
-  height: 100vh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
 
   background: #000;
   color: #fff;
@@ -17,8 +13,85 @@ body {
 }
 
 .title {
-  margin-bottom: 12px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
+
+.title > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.title img {
+  width: 4em;
+  height: auto;
+}
+
+.title main {
+  font-size: 20px;
+}
+
+.title sub {
+  color: #aaa;
+}
+
+.active-page {
+  color: #5f8fcb;
+  font-weight: 700;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+/* ---------- header / footer ---------- */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  padding-top: 2em;
+  padding-bottom: 2.8em;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 72%,
+    rgba(0, 0, 0, 0.75) 76%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+header .center a {
+  text-decoration: none;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+
+  text-align: center;
+
+  padding-top: 2.8em;
+  padding-bottom: 2em;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(0, 0, 0, 0.75) 76%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* ---------- links ---------- */
 
 a {
   color: #fff;
@@ -26,5 +99,222 @@ a {
 }
 
 a:hover {
+  color: #666;
+}
+
+/* ---------- default page layout: centered content ---------- */
+
+.page {
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  max-width: 900px;
+  margin: 0 auto;
+
+  padding: 9em 1.5em 7em 1.5em;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+
+  line-height: 1.15;
+}
+
+.page h1 {
+  margin: 1.8em 0 0.8em 0;
+  font-size: 2em;
+}
+
+/* ---------- vision page ---------- */
+
+.hero-image {
+  width: 507px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-block {
+  width: 507px;        /* same as the image */
+  max-width: 100%;     /* still shrinks on small screens */
+}
+
+.hero-block p {
+  margin: 1em 0 0 0;
+  text-align: left;    /* or justify, whatever you prefer */
+}
+
+/* ---------- long scrolling pages, e.g. publications ---------- */
+
+.page.publications-page {
+  min-height: auto;
+  display: block;
+
+  max-width: 900px;
+  margin: 9.7em auto 9em auto;
+  padding: 0 1.5em;
+
+  line-height: 1.15;
+}
+
+/* ---------- publications ---------- */
+
+.pub-section {
+  margin-top: 2.4em;
+}
+
+.pub-section:first-of-type {
+  margin-top: 0;
+}
+
+.pub-section h2 {
+  margin: 0 0 1.15em 0;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 400;
+  color: #ddd;
+}
+
+.pub-row {
+  display: grid;
+  grid-template-columns: 4.2em 1fr;
+  column-gap: 1.2em;
+  align-items: start;
+
+  /* truly zero gap between entries */
+  margin: 0;
+  padding: 0;
+}
+
+.pub-year {
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+  line-height: 1.15;
+}
+
+.pub-text {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.pub-title {
+  margin: 0;
+  padding: 0;
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.pub-details {
+  margin: 0;
+  padding: 0;
+  font-size: 0.85em;
+  line-height: 1.12;
   color: #aaa;
+}
+
+.me {
+  color: #5f8fcb;
+  font-weight: 700;
+}
+
+.journal {
+  font-style: italic;
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 700px) {
+  .page {
+    padding: 8em 1em 7em 1em;
+  }
+
+  .page.publications-page {
+    margin: 8em auto 8em auto;
+    padding: 0 1em;
+  }
+
+  .pub-row {
+    grid-template-columns: 3.4em 1fr;
+    column-gap: 0.8em;
+  }
+}
+
+
+
+
+/* Make sure every section is aligned the same */
+.pub-section {
+  margin-top: 2.4em;
+}
+
+.pub-section:first-of-type {
+  margin-top: 0;
+}
+
+/* Title never wraps – can force horizontal scroll */
+.pub-title {
+  margin: 0;
+  padding: 0;
+  font-size: 0.95em;
+  font-weight: 700;
+  line-height: 1.15;
+  white-space: nowrap;   /* ← no line breaks */
+}
+
+/* Authors and journal on separate lines */
+.pub-authors,
+.pub-journal {
+  margin: 0;
+  padding: 0;
+  font-size: 0.85em;
+  line-height: 1.12;
+}
+
+.pub-journal {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Optional: allow the whole page to scroll horizontally if a title is very long */
+.page.publications-page {
+  min-height: auto;
+  display: block;
+
+  max-width: none;
+  width: max-content;   /* grows with the longest title */
+
+  /* same left starting point as the centered 900 px pages */
+  margin-left: max(1.5em, calc((100% - 900px) / 2));
+  margin-right: 1.5em;
+  margin-top: 9.7em;
+  margin-bottom: 9em;
+
+  padding: 0;
+  line-height: 1.15;
+}
+
+html, body {
+  overflow-x: auto;   /* scrollbar appears at the bottom of the window */
+}
+
+.page.publications-page {
+  overflow-x: visible; /* do NOT put the scrollbar on the content box itself */
+}
+
+
+.about-content {
+  max-width: 650px;
+  text-align: left;
+}
+
+.about-content h1 {
+  text-align: center;
+}
+
+.about-content p {
+  margin: 0 0 2em;
 }
